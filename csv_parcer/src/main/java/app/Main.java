@@ -15,7 +15,7 @@ public class Main {
     private static final String OUTPUT_PATH = "output.csv";
     private static final int BUFFER_SIZE = 1024;
 
-    static void main() {
+    public static void main(String[] args) throws Exception {
 
         BufferTokenizer tokenizer = new BufferTokenizer();
         WordStats stats = new WordStats();
