@@ -9,16 +9,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
-public class main {
-    public static void main(String[] args) {
-        final String inputPath = "input.txt";
-        final String outputPath = "output.csv";
-        final int BUFFER_SIZE = 1024;
+public class Main {
+
+    private static final String INPUT_PATH = "input.txt";
+    private static final String OUTPUT_PATH = "output.csv";
+    private static final int BUFFER_SIZE = 1024;
+
+    static void main() {
 
         BufferTokenizer tokenizer = new BufferTokenizer();
         WordStats stats = new WordStats();
 
-        try (Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), StandardCharsets.UTF_8))) {
+        try (Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(INPUT_PATH), StandardCharsets.UTF_8))) {
             char[] buf = new char[BUFFER_SIZE];
             int read;
 
@@ -34,12 +36,12 @@ public class main {
                 stats.addWord(w);
             }
         } catch (IOException e) {
-            System.out.println("The file cannot be opened!");
+            System.out.println("The file cannot be opened!" + e.getMessage());
             return;
         }
         System.out.println("The file has been opened successfully");
 
-        try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputPath), StandardCharsets.UTF_8))) {
+        try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(OUTPUT_PATH), StandardCharsets.UTF_8))) {
             CsvWriter.writeHeader(out);
 
             long total = stats.getTotalWords();

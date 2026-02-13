@@ -13,7 +13,7 @@ public class BufferTokenizer {
         for (int i = 0; i < chunk.length(); i++) {
             char c = chunk.charAt(i);
             if (Character.isWhitespace(c) || isPunctuation(c)) {
-                if (currentWord.length() > 0) {
+                if (!currentWord.isEmpty()) {
                     String cleaned = TextNormalizer.cleanWord(currentWord.toString());
                     if (!cleaned.isEmpty()) {
                         words.add(cleaned);
